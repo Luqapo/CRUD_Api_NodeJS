@@ -9,13 +9,9 @@ const db = mongoose.connect(uri, {useNewUrlParser: true}, () => {
     
 });
 
-
 const router = express.Router();
-
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 router.use((req,res,next) => {
     console.log('Connection');
@@ -30,7 +26,6 @@ router.route('/posts')
         completed: newTodo.completed
     }, (err, post) => {
         if(err) res.status(500).send('There was a problem creating post.')
-
         res.status(200).send('Post created.')
         })
     })
@@ -49,7 +44,7 @@ router.route('/posts/:post_id')
         Post.findById(req.params.post_id, (err,post) => {
             if(err) res.status(500).send('Error on the sever.');
             if(!post) return res.status(404).send('No post found.');
-            res.json(post);
+            res.status(200).json(post);
         })
     })
 
@@ -64,7 +59,6 @@ router.route('/posts/:post_id')
 
                 post.save(err => {
                     if(err) res.status(500).send('Error on the sever.');
-                    
                     res.status(200).json({message: 'Post updated'}); 
                 })
         })

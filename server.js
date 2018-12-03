@@ -12,5 +12,5 @@ app.use('/api/auth', AuthController)
 app.use('/api', TodoController);
 
 app.listen(PORT, () =>{
-    console.log(`Server uruchomiony na porcie ${PORT}`);
+    console.log(`Server listen at port ${PORT}`);
 });
