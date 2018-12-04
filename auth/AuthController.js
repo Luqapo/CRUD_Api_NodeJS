@@ -41,7 +41,7 @@ router.post('/register', (req, res) => {
         });
     } else {
         res.status(400).send({
-            error
+            message: error
         });
     }
 });

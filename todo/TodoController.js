@@ -8,7 +8,6 @@ const db = mongoose.connect(uri, {
     useNewUrlParser: true
 }, () => {
     console.log('connected');
-
 });
 
 const router = express.Router();
@@ -39,10 +38,14 @@ router.route('/posts')
                 completed: newTodo.completed
             }, (err, post) => {
                 if (err) res.status(500).send('There was a problem creating post.')
-                res.status(200).send('Post created.')
+                res.status(200).send({
+                    message: 'Post created.'
+                })
             })
         } else {
-            res.status(400).send({ error });
+            res.status(400).json({
+                message: error
+            });
         }
     })
 
